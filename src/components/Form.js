@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useMoneda from '../hooks/useMoneda';
 import useCriptoMoneda from '../hooks/useCriptoMoneda';
 import axios from 'axios';
+import Error from './Error';
 
 const Boton = styled.input`
     margin-top: 20px;
@@ -33,6 +34,7 @@ const Form = () => {
     const [listaCripto, setListaCripto] = useState([]);
     const [moneda, SelectMoneda] = useMoneda('Elige tu moneda', '', MONEDAS);
     const [criptoMoneda, SelectCripto] = useCriptoMoneda('Elige tu criptomoneda', '', listaCripto);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         const consultarAPI = async () => {
@@ -44,8 +46,24 @@ const Form = () => {
         consultarAPI();
     }, []);
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // Validation
+        if (moneda === '' || criptoMoneda === '') {
+            setError(true);
+            return;
+        }
+
+        setError(false);
+    }
+
     return (
-        <form>
+        <form
+            onSubmit={handleSubmit}
+        >
+            { error ? <Error mensaje="Todos los campos son obligatorios" /> : null }
+            
             <SelectMoneda />
 
             <SelectCripto />
