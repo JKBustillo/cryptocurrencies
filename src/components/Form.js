@@ -30,7 +30,7 @@ const MONEDAS = [
     { codigo: 'GBP', nombre: 'Libra Esterlina' },
 ];
 
-const Form = () => {
+const Form = ({ setMoneda, setCriptoMoneda}) => {
     const [listaCripto, setListaCripto] = useState([]);
     const [moneda, SelectMoneda] = useMoneda('Elige tu moneda', '', MONEDAS);
     const [criptoMoneda, SelectCripto] = useCriptoMoneda('Elige tu criptomoneda', '', listaCripto);
@@ -56,6 +56,8 @@ const Form = () => {
         }
 
         setError(false);
+        setMoneda(moneda);
+        setCriptoMoneda(criptoMoneda);
     }
 
     return (
