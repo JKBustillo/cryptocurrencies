@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const MensajeError = styled.p`
     background-color: #B7322C;
@@ -19,5 +20,9 @@ const Error = ({mensaje}) => {
         </MensajeError>
     );
 }
- 
+
+Error.propTypes = {
+    mensaje: PropTypes.string.isRequired,
+};
+
 export default Error;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import useMoneda from '../hooks/useMoneda';
 import useCriptoMoneda from '../hooks/useCriptoMoneda';
 import axios from 'axios';
@@ -77,5 +78,10 @@ const Form = ({ setMoneda, setCriptoMoneda}) => {
         </form>
     );
 }
+
+Form.propTypes = {
+    setMoneda: PropTypes.func.isRequired,
+    setCriptoMoneda: PropTypes.func.isRequired,
+};
  
 export default Form;
